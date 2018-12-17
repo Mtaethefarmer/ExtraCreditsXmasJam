@@ -9,6 +9,8 @@ public class AttachmentPoint : MonoBehaviour
 
     public float gizmoLength = 0.1f;
 
+    public float attachmentMaxRange = 0.5f;
+
     // Use this for initialization
     void Start()
     {
@@ -23,6 +25,9 @@ public class AttachmentPoint : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, 0.05f);
+
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(transform.position, transform.position +
             new Vector3(AttachmentDirection.normalized.x * gizmoLength, AttachmentDirection.normalized.y * gizmoLength, 0.0f));
