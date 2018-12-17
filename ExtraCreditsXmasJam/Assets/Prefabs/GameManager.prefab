@@ -56,4 +56,4 @@ MonoBehaviour:
   Attachments:
   - {fileID: 1903916642042280, guid: eb38878a9a0fc7d45a5cf2fe27e5b97c, type: 2}
   spawnInterval: 2
-  spawnPosition: {x: -10, y: 4, z: 0}
+  spawnPosition: {x: -10, y: -4, z: 0}
