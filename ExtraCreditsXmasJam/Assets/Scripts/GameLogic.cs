@@ -165,7 +165,7 @@ public class GameLogic : MonoBehaviour {
         // Add random bonus proportional to attachment count, to
         // make bases with few attachments a little better.
         if(AttachmentCount > 0)
-            total += (int)(UnityEngine.Random.Range(200.0f, 400.0f) * ((float)1 / (float)AttachmentCount));
+            total += (int)(UnityEngine.Random.Range(200.0f, 400.0f) * ((float)1 / AttachmentCount));
 
         return total;
     }

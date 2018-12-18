@@ -232,6 +232,12 @@ Prefab:
       propertyPath: baseSpawnPosition.y
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114676296939147576, guid: 1c092ff188e0cf0448edd108ea38bfc5,
+        type: 2}
+      propertyPath: Attachments.Array.data[0]
+      value: 
+      objectReference: {fileID: 1365226630862768, guid: c79096ac9a16ceb4abf9d5287d9cad97,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c092ff188e0cf0448edd108ea38bfc5, type: 2}
   m_IsPrefabAsset: 0
