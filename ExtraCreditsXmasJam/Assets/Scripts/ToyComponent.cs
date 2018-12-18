@@ -9,8 +9,20 @@ public enum ComponentType
     Attachment
 }
 
+public enum ComponentTheme
+{
+    Food,
+    Characters,
+    VehiclesRobots,
+    Misc,
+}
+
 [RequireComponent(typeof(Transform))]
 public class ToyComponent : MonoBehaviour {
+
+    public ComponentTheme compTheme = ComponentTheme.Food;
+
+    public int maxCollisionChecks = 30;
 
     private ComponentType compType = ComponentType.Base;
 
@@ -85,20 +97,41 @@ public class ToyComponent : MonoBehaviour {
     {
         if(compType == ComponentType.Attachment)
         {
-            Detach(transform.parent.gameObject);
+            if(transform.parent != null)
+                Detach(transform.parent.gameObject);
         }
     }
 
     public void ComponentDropped()
     {
         GameObject[] potentialAttachments;
-
-        // Look for attachments if we are a base, and vice versa
+        
         if(compType == ComponentType.Base)
         {
-            //potentialAttachments = GameObject.FindGameObjectsWithTag("Attachment");
+            // Check if we were dropped on a toybox
+            BoxCollider2D coll = gameObject.GetComponent<BoxCollider2D>();
+            if(coll)
+            {
+                ContactFilter2D filter = new ContactFilter2D();
+                filter.minDepth = transform.position.z - 10;
+                filter.maxDepth = transform.position.z + 10;
+                Collider2D[] results = new Collider2D[maxCollisionChecks];
+
+                coll.OverlapCollider(filter, results);
+
+                foreach(Collider2D otherColl in results)
+                {
+                    if(otherColl != null && otherColl.tag == "Toybox")
+                    {
+                        GameLogic.instance.SubmitToy(gameObject);
+                        return;
+                    }
+                }
+            }
+
             return;
         }
+        // Find bases if we are an attachment
         else
         {
             potentialAttachments = GameObject.FindGameObjectsWithTag("Base");
